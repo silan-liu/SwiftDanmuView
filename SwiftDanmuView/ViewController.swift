@@ -10,22 +10,29 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var danmu: SLDanmuView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let danmuView = SLDanmuItemView(frame: CGRect(x: 0, y: 50, width: 0, height: 0))
+        danmu = SLDanmuView(frame: CGRect(x: 0, y: 50, width: self.view.width, height: 150))
         
-        danmuView.backgroundColor = UIColor.red
-        danmuView.updateText(text: "99230")
-        self.view.addSubview(danmuView)
+        self.view.addSubview(danmu!)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    @IBAction func pauseAction(_ sender: Any) {
+        danmu?.pause()
+    }
+    
+    @IBAction func resumeAction(_ sender: Any) {
+        danmu?.resume()
+    }
+    
 }
 

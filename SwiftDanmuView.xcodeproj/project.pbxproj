@@ -15,6 +15,8 @@
 		AD46F6431E9E4F8E0072F612 /* SwiftDanmuViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD46F6421E9E4F8E0072F612 /* SwiftDanmuViewTests.swift */; };
 		AD46F6511E9E4FD90072F612 /* SLDanmuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD46F6501E9E4FD90072F612 /* SLDanmuItemView.swift */; };
 		AD46F6531E9E56FA0072F612 /* SLDanmuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD46F6521E9E56FA0072F612 /* SLDanmuView.swift */; };
+		AD8E81241EA4CCB80014CF32 /* SLDanmuInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8E81231EA4CCB80014CF32 /* SLDanmuInfo.swift */; };
+		AD8E81271EA4DDBB0014CF32 /* UIView+Frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8E81261EA4DDBB0014CF32 /* UIView+Frame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		AD46F6441E9E4F8E0072F612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD46F6501E9E4FD90072F612 /* SLDanmuItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLDanmuItemView.swift; sourceTree = "<group>"; };
 		AD46F6521E9E56FA0072F612 /* SLDanmuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLDanmuView.swift; sourceTree = "<group>"; };
+		AD8E81231EA4CCB80014CF32 /* SLDanmuInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLDanmuInfo.swift; sourceTree = "<group>"; };
+		AD8E81261EA4DDBB0014CF32 /* UIView+Frame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Frame.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,10 +108,20 @@
 		AD46F64F1E9E4FC80072F612 /* DanmuView */ = {
 			isa = PBXGroup;
 			children = (
+				AD8E81251EA4DDAF0014CF32 /* Utils */,
 				AD46F6501E9E4FD90072F612 /* SLDanmuItemView.swift */,
 				AD46F6521E9E56FA0072F612 /* SLDanmuView.swift */,
+				AD8E81231EA4CCB80014CF32 /* SLDanmuInfo.swift */,
 			);
 			path = DanmuView;
+			sourceTree = "<group>";
+		};
+		AD8E81251EA4DDAF0014CF32 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AD8E81261EA4DDBB0014CF32 /* UIView+Frame.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,8 +229,10 @@
 			files = (
 				AD46F6301E9E4F8E0072F612 /* ViewController.swift in Sources */,
 				AD46F6511E9E4FD90072F612 /* SLDanmuItemView.swift in Sources */,
+				AD8E81271EA4DDBB0014CF32 /* UIView+Frame.swift in Sources */,
 				AD46F62E1E9E4F8E0072F612 /* AppDelegate.swift in Sources */,
 				AD46F6531E9E56FA0072F612 /* SLDanmuView.swift in Sources */,
+				AD8E81241EA4CCB80014CF32 /* SLDanmuInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +440,7 @@
 				AD46F6491E9E4F8E0072F612 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD46F64A1E9E4F8E0072F612 /* Build configuration list for PBXNativeTarget "SwiftDanmuViewTests" */ = {
 			isa = XCConfigurationList;
@@ -432,6 +449,7 @@
 				AD46F64C1E9E4F8E0072F612 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

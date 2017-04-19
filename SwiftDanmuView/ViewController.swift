@@ -10,15 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var danmu: SLDanmuView?
+    lazy var danmuView: SLDanmuView = {
+        var danmuView = SLDanmuView(frame: CGRect(x: 0, y: 50, width: self.view.width, height: 150))
+        return danmuView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        danmu = SLDanmuView(frame: CGRect(x: 0, y: 50, width: self.view.width, height: 150))
-        
-        self.view.addSubview(danmu!)
+        self.view.addSubview(danmuView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,11 +28,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pauseAction(_ sender: Any) {
-        danmu?.pause()
+        danmuView.pause()
     }
     
     @IBAction func resumeAction(_ sender: Any) {
-        danmu?.resume()
+        danmuView.resume()
     }
     
 }

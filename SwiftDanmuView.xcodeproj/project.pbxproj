@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD27F7F51EA7172C0008768A /* SLDanmuBgItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD27F7F41EA7172C0008768A /* SLDanmuBgItemView.swift */; };
 		AD46F62E1E9E4F8E0072F612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD46F62D1E9E4F8E0072F612 /* AppDelegate.swift */; };
 		AD46F6301E9E4F8E0072F612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD46F62F1E9E4F8E0072F612 /* ViewController.swift */; };
 		AD46F6331E9E4F8E0072F612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD46F6311E9E4F8E0072F612 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD27F7F41EA7172C0008768A /* SLDanmuBgItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLDanmuBgItemView.swift; sourceTree = "<group>"; };
 		AD46F62A1E9E4F8E0072F612 /* SwiftDanmuView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDanmuView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD46F62D1E9E4F8E0072F612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD46F62F1E9E4F8E0072F612 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				AD46F6501E9E4FD90072F612 /* SLDanmuItemView.swift */,
 				AD46F6521E9E56FA0072F612 /* SLDanmuView.swift */,
 				AD8E81231EA4CCB80014CF32 /* SLDanmuInfo.swift */,
+				AD27F7F41EA7172C0008768A /* SLDanmuBgItemView.swift */,
 			);
 			path = DanmuView;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				AD8E81271EA4DDBB0014CF32 /* UIView+Frame.swift in Sources */,
 				AD46F62E1E9E4F8E0072F612 /* AppDelegate.swift in Sources */,
 				AD46F6531E9E56FA0072F612 /* SLDanmuView.swift in Sources */,
+				AD27F7F51EA7172C0008768A /* SLDanmuBgItemView.swift in Sources */,
 				AD8E81241EA4CCB80014CF32 /* SLDanmuInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

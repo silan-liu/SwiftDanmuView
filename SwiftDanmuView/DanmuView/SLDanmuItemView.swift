@@ -9,7 +9,11 @@
 import Foundation
 import UIKit
 
-class SLDanmuItemView: UIView {
+protocol SLDanmuItemViewProtocol {
+    func updateDanmuInfo(info: SLDanmuInfo)
+}
+
+class SLDanmuItemView: UIView, SLDanmuItemViewProtocol {
     
     let leftMargin: CGFloat = 10
     let topMargin: CGFloat = 5
@@ -52,16 +56,7 @@ class SLDanmuItemView: UIView {
 
         setNeedsLayout()
     }
-    
-    func updateTextColor(color: UIColor) {
-        label.textColor = color
-    }
-    
-    func updateText(text: String) {
-        label.text = text
-        setNeedsLayout()
-    }
-    
+
     func updateAttributedText(text: NSAttributedString) {
         label.attributedText = text
         setNeedsLayout()
@@ -81,10 +76,5 @@ class SLDanmuItemView: UIView {
         super.layoutSubviews()
         
         self.sizeToFit()
-//        label.sizeToFit()
-//        
-//        label.frame = CGRect(x: leftMargin, y: topMargin, width: label.frame.size.width, height: label.frame.size.height)
-//        
-//        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: label.frame.size.width + 2 * leftMargin, height: label.frame.size.height + 2 * topMargin)
     }
 }

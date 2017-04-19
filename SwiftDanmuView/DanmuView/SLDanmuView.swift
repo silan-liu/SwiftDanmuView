@@ -16,39 +16,49 @@ class SLDanmuView: UIView {
     // 轨道数
     var numberOfRows: UInt = 3
     
-    // 速度
     var speed: CGFloat = 75.0
     
     var timer: Timer?
-    
+        
     lazy var pendingList: [SLDanmuInfo] = {
         var list = Array<SLDanmuInfo>()
         
         //test
-        var info = SLDanmuInfo(text: "hi色黑龙江凡士林", textColor: UIColor.red)
+        var info = SLDanmuInfo(text: "hi色黑龙江凡士林", textColor: UIColor.red, itemViewClass: SLDanmuBgItemView.self)
         list.append(info)
         
-        info = SLDanmuInfo(text: "arre咳咳咳看", textColor: UIColor.blue)
+        info = SLDanmuInfo(text: "arre咳咳咳看", textColor: UIColor.blue, itemViewClass: SLDanmuItemView.self)
         list.append(info)
 
-        info = SLDanmuInfo(text: "fds分手快乐发送", textColor: UIColor.black)
+        info = SLDanmuInfo(text: "fds分手快乐发送", textColor: UIColor.black, itemViewClass: SLDanmuBgItemView.self)
         list.append(info)
 
-        info = SLDanmuInfo(text: "23诶偶无偶", textColor: UIColor.purple)
+        info = SLDanmuInfo(text: "23诶偶无偶", textColor: UIColor.purple, itemViewClass: SLDanmuItemView.self)
         list.append(info)
         
-        info = SLDanmuInfo(text: "ff你好风刀霜剑反馈塑料袋交付的考四六级", textColor: UIColor.green)
+        info = SLDanmuInfo(text: "ff你好风刀霜剑反馈塑料袋交付的考四六级", textColor: UIColor.green, itemViewClass: SLDanmuBgItemView.self)
         list.append(info)
         
-        info = SLDanmuInfo(text: "ff你好风刀霜剑发快递扩扩扩扩塑料袋交付的考四六级", textColor: UIColor.yellow)
+        info = SLDanmuInfo(text: "ff你好风刀霜剑发快递扩扩扩扩塑料袋交付的考四六级", textColor: UIColor.yellow, itemViewClass: SLDanmuItemView.self)
         list.append(info)
         
+        for i in 0...10 {
+            info = SLDanmuInfo(text: "考四六级" + String(i), textColor: UIColor.red, itemViewClass: SLDanmuItemView.self)
+            list.append(info)
+        }
+                
         return list
     }()
     
-    lazy var reuseItemViewSet: Set<SLDanmuItemView> = {
-        var set = Set<SLDanmuItemView>()
+    lazy var reuseItemViewSet: Set<UIView> = {
+        var set = Set<UIView>()
         return set
+    }()
+    
+    // key:className
+    lazy var reuseItemViewPool: [String: UIView] = {
+        var reusePool = [String: UIView]()
+        return reusePool
     }()
     
     // 最后一条弹幕完全显示在屏幕上的时间记录
@@ -80,6 +90,7 @@ class SLDanmuView: UIView {
         startTimer()
     }
     
+    
     //MARK: timer
     func startTimer() {
         if let timer = timer {
@@ -89,7 +100,6 @@ class SLDanmuView: UIView {
         timer = Timer(timeInterval: 0.1, target: self, selector: #selector(SLDanmuView.handleTimer), userInfo: nil, repeats: true)
         
         RunLoop.current.add(timer!, forMode: RunLoopMode.commonModes)
-        timer!.fire()
     }
     
     func stopTimer() {
@@ -118,6 +128,23 @@ class SLDanmuView: UIView {
         return Int(y / (rowHeight() + lineSpace))
     }
     
+    func reuseItemView(cls: AnyClass) -> UIView? {
+        guard reuseItemViewPool.count > 0 else {
+            return nil
+        }
+        
+        let className = NSStringFromClass(cls)
+        if let reuseView = reuseItemViewPool[className] {
+            reuseItemViewPool.removeValue(forKey: className)
+            print("reuseItemView: \(reuseView)")
+            print("reusePool:\(self.reuseItemViewPool)")
+
+            return reuseView
+        }
+        
+        return nil
+    }
+    
     func playDanmu(info: SLDanmuInfo) {
         guard info.text.characters.count > 0 else {
             return
@@ -136,52 +163,53 @@ class SLDanmuView: UIView {
         }
         
         guard shouldShow else {
-            pendingList.append(info)
+            pendingList.insert(info, at: 0)
             return
         }
         
-        var itemView = dequeueItemView()
-        if itemView == nil {
-            itemView = SLDanmuItemView()
+        let itemViewClass: AnyClass = info.itemViewClass
+        var reuseItemView = self.reuseItemView(cls: itemViewClass)
+        if reuseItemView == nil {
+            if let cls = itemViewClass as? UIView.Type {
+                reuseItemView = cls.init()
+            }
+        }
+        
+        guard let itemView = reuseItemView else {
+            pendingList.insert(info, at: 0)
+            return
         }
         
         // 计算坐标y
         let y =  CGFloat(index) * (lineSpace + rowHeight())
-        itemView!.x = self.frame.size.width
-        itemView!.y = y
-
-        itemView!.updateDanmuInfo(info: info)
-        itemView!.sizeToFit()
+        itemView.x = self.frame.size.width
+        itemView.y = y
         
-        self.addSubview(itemView!)
+        if let itemView = itemView as? SLDanmuItemViewProtocol {
+            itemView.updateDanmuInfo(info: info)
+        }
+        
+        itemView.sizeToFit()
+        
+        self.addSubview(itemView)
         
         // 弹幕完全显示在屏幕的时间+间隔
-        let time = itemView!.width / speed + 0.5 + CGFloat(NSDate().timeIntervalSince1970)
+        let time = itemView.width / speed + 0.5 + CGFloat(NSDate().timeIntervalSince1970)
         timeDict[index] = time
         
         // 动画
-        let duration = (self.width + itemView!.width) / speed
+        let duration = (self.width + itemView.width) / speed
         
         UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: .curveLinear, animations: {
-            itemView!.x = -itemView!.width
+            itemView.x = -itemView.width
         }) { (finished) in
             if (finished) {
-                self.reuseItemViewSet.insert(itemView!)
-                itemView!.removeFromSuperview()
+                // add to reusePool
+                self.reuseItemViewPool[NSStringFromClass(itemViewClass)] = itemView
+                print("reusePool:\(self.reuseItemViewPool)")
+                itemView.removeFromSuperview()
             }
         }
-    }
-    
-    func dequeueItemView() -> SLDanmuItemView? {
-        guard reuseItemViewSet.count > 0 else {
-            return nil
-        }
-        
-        let itemView = reuseItemViewSet.first
-        reuseItemViewSet.removeFirst()
-        
-        print("resuse itemView")
-        return itemView
     }
     
     func pause() {
@@ -206,7 +234,7 @@ class SLDanmuView: UIView {
                 let index = rowWithY(y: itemView.y)
                 
                 
-                // 更新时间，右边未完全显示在屏幕
+                // 更新时间，如果右边未完全显示在屏幕
                 if (itemView.x + itemView.width > self.width) {
                     let time = (itemView.x + itemView.width - self.width) / speed + 0.5 + CGFloat(NSDate().timeIntervalSince1970)
                     timeDict[index] = time
@@ -218,7 +246,8 @@ class SLDanmuView: UIView {
                     itemView.x = -itemView.width
                 }) { (finished) in
                     if (finished) {
-                        self.reuseItemViewSet.insert(itemView as! SLDanmuItemView)
+                        let mirror = Mirror(reflecting: itemView)
+                        self.reuseItemViewPool[NSStringFromClass(mirror.subjectType as! AnyClass)] = itemView
                         itemView.removeFromSuperview()
                     }
                 }

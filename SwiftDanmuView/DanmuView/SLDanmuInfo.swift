@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct SLDanmuInfo {
+class SLDanmuInfo {
     var text: String
     var textColor: UIColor = UIColor.black
     var itemViewClass: AnyClass = SLDanmuItemView.self
@@ -27,5 +27,15 @@ struct SLDanmuInfo {
         text = aText
         textColor = aTextColor
         itemViewClass = aItemViewClass
+    }
+}
+
+class SLBgDanmuInfo: SLDanmuInfo {
+    var bgColor: UIColor
+    
+    init(text aText: String, textColor aTextColor: UIColor, itemViewClass aItemViewClass: AnyClass, bgColor aBgColor: UIColor) {
+        bgColor = aBgColor
+
+        super.init(text: aText, textColor: aTextColor, itemViewClass: aItemViewClass)
     }
 }

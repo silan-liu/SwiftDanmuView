@@ -9,11 +9,9 @@
 import Foundation
 import UIKit
 
-protocol SLDanmuItemViewProtocol {
-    func updateDanmuInfo(info: SLDanmuInfo)
-}
+class SLDanmuItemView: UIView {
 
-class SLDanmuItemView: UIView, SLDanmuItemViewProtocol {
+    typealias T = SLDanmuInfo
     
     let leftMargin: CGFloat = 10
     let topMargin: CGFloat = 5
@@ -53,10 +51,10 @@ class SLDanmuItemView: UIView, SLDanmuItemViewProtocol {
     func updateDanmuInfo(info: SLDanmuInfo) {
         label.text = info.text
         label.textColor = info.textColor
-
+        
         setNeedsLayout()
     }
-
+    
     func updateAttributedText(text: NSAttributedString) {
         label.attributedText = text
         setNeedsLayout()

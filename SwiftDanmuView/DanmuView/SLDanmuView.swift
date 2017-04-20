@@ -42,6 +42,9 @@ class SLDanmuView: UIView {
         info = SLDanmuInfo(text: "ff你好风刀霜剑发快递扩扩扩扩塑料袋交付的考四六级", textColor: UIColor.yellow, itemViewClass: SLDanmuItemView.self)
         list.append(info)
         
+        info = SLBgDanmuInfo(text: "just for test", textColor: UIColor.brown, itemViewClass: SLDanmuBgItemView.self, bgColor: UIColor.red)
+        list.append(info)
+        
         for i in 0...10 {
             info = SLDanmuInfo(text: "考四六级" + String(i), textColor: UIColor.red, itemViewClass: SLDanmuItemView.self)
             list.append(info)
@@ -185,7 +188,7 @@ class SLDanmuView: UIView {
         itemView.x = self.frame.size.width
         itemView.y = y
         
-        if let itemView = itemView as? SLDanmuItemViewProtocol {
+        if let itemView = itemView as? SLDanmuItemView {
             itemView.updateDanmuInfo(info: info)
         }
         

@@ -4,8 +4,7 @@
 
 ![danmugif](danmu.gif)
 
-
-####使用
+#### 用法
 
 设置好数据源即可。
 
@@ -48,7 +47,7 @@ class ViewController: UIViewController {
 ```
 
 
-####弹幕数据结构
+#### 弹幕数据结构
 
 
 结构定义如下：
@@ -91,7 +90,7 @@ class SLDanmuItemView: UIView {
 	
 这种是最基础的，只更新text。由于要支持不同样式的弹幕，所以定义了`itemViewClass`。可设置该条弹幕所展示ui的`class`。
 
-####自定义弹幕ui
+#### 自定义弹幕ui
 	
 同时也可以自定义弹幕ui继承自`SLDanmuItemView`，danmuInfo继承`SLDanmuInfo`，在自定义ui中更新danmuInfo，`注意要重写sizeToFit，设置好frame`。
 

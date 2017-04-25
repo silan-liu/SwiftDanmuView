@@ -14,12 +14,12 @@ class SLDanmuView: UIView {
     let lineSpace: CGFloat = 25.0
     
     // 轨道数
-    var numberOfRows: UInt = 3
+    var numberOfRows: Int = 3
     
     var speed: CGFloat = 75.0
     
     var timer: Timer?
-        
+    
     lazy var pendingList: [SLDanmuInfo] = {
         var list = Array<SLDanmuInfo>()
         
@@ -148,24 +148,35 @@ class SLDanmuView: UIView {
         return nil
     }
     
+    // 计算弹轨
+    func calculateRow() -> Int {
+        for index in 0..<numberOfRows {
+            // 判断是否能放在该条轨道，即该轨道的最后一条弹幕已经在屏幕上。
+            var shouldShow = true
+            if let time = timeDict[index] {
+                let currentTime = NSDate()
+                if currentTime.timeIntervalSince1970 < TimeInterval(time) {
+                    shouldShow = false
+                }
+            }
+            
+            if shouldShow {
+                return index
+            }
+        }
+        
+        return -1;
+    }
+    
+    // 播放弹幕
     func playDanmu(info: SLDanmuInfo) {
         guard info.text.characters.count > 0 else {
             return
         }
         
-        // 随机取条弹轨
-        let index: Int = Int(arc4random() % UInt32(numberOfRows))
-        
-        // 判断是否能放在该条轨道，即该轨道的最后一条弹幕已经在屏幕上。
-        var shouldShow = true
-        if let time = timeDict[index] {
-            let currentTime = NSDate()
-            if currentTime.timeIntervalSince1970 < TimeInterval(time) {
-                shouldShow = false
-            }
-        }
-        
-        guard shouldShow else {
+        // 计算弹轨
+        let index = calculateRow()
+        guard index >= 0 && index < numberOfRows else {
             pendingList.insert(info, at: 0)
             return
         }

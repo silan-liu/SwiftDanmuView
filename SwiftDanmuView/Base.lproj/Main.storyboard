@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,14 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fhw-6V-MnI">
-                                <rect key="frame" x="161.5" y="537" width="51" height="30"/>
+                                <rect key="frame" x="161.5" y="487" width="51" height="30"/>
                                 <state key="normal" title="resume"/>
                                 <connections>
                                     <action selector="resumeAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZSJ-YP-2hL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRE-vB-6f0">
-                                <rect key="frame" x="166" y="438" width="42" height="30"/>
+                                <rect key="frame" x="166" y="437" width="42" height="30"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <state key="normal" title="pause"/>
                                 <connections>
@@ -39,10 +39,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Fhw-6V-MnI" firstAttribute="top" secondItem="eRE-vB-6f0" secondAttribute="bottom" constant="69" id="Im9-jY-mwC"/>
+                            <constraint firstItem="Fhw-6V-MnI" firstAttribute="top" secondItem="eRE-vB-6f0" secondAttribute="bottom" constant="20" id="Im9-jY-mwC"/>
                             <constraint firstItem="eRE-vB-6f0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qEi-pF-MBs"/>
                             <constraint firstItem="Fhw-6V-MnI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vx8-gJ-Qnu"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Fhw-6V-MnI" secondAttribute="bottom" constant="100" id="ybg-8g-aea"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Fhw-6V-MnI" secondAttribute="bottom" constant="150" id="ybg-8g-aea"/>
                         </constraints>
                     </view>
                 </viewController>
